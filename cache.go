@@ -18,6 +18,17 @@ type Cache interface {
 
 	WriteDB(key, value interface{}) error
 	ReadDB(key interface{}) (value interface{}, err error)
+
+	// IsExist olny RWThrough/WriteBack Strategy
+	IsExist(key interface{}) (isExist bool, err error)
+
+	// IsDirty olny WriteBack Strategy
+	// key is ReadCache return value
+	IsDirty(key interface{}) (isDirty bool, err error)
+
+	// Mark olny WriteBack Strategy
+	// when isDirty true,mark is dirty,false mark is no dirty
+	Mark(key interface{},isDirty bool) (err error)
 }
 
 type CacheStrategy interface {

@@ -18,3 +18,38 @@ miss read from DB, write to cache
 
 write to DB
 delete cache
+
+## Read/Write Through
+
+### Read Through
+
+read from cache
+hit return date
+else read from DB and write cache
+return value
+
+### Write Through
+check isExist from cache
+
+if exist Update cache and update DB
+else 
+write cache and write DB or write DB
+
+## WriteBack
+
+### Write
+read cache
+    hit write cache and  mark cache isDirty
+    
+    miss 
+    if isDirty write DB
+    read DB
+    write cache
+    mark cache isDirty
+
+### Read
+read cache
+    hit return
+if isDirty write DB
+read cache
+mark no dirty
