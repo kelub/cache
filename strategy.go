@@ -159,7 +159,7 @@ func (wb *WriteBack) Read(entry *logrus.Entry, key interface{}) (value interface
 	}
 	// Miss
 	CacheMiss.Inc([]string{wb.name})
-	isDirty, err := wb.cache.IsDirty(value)
+	isDirty, err := wb.cache.IsDirty(key)
 	if err != nil {
 		return nil, err
 	}
@@ -192,7 +192,7 @@ func (rb *WriteBack) Write(entry *logrus.Entry, key, value interface{}) (err err
 	// Miss
 	if !isExist{
 		CacheMiss.Inc([]string{rb.name})
-		isDirty, err := rb.cache.IsDirty(value)
+		isDirty, err := rb.cache.IsDirty(key)
 		if err != nil {
 			return  err
 		}

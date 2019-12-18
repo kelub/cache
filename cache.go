@@ -23,7 +23,6 @@ type Cache interface {
 	IsExist(key interface{}) (isExist bool, err error)
 
 	// IsDirty olny WriteBack Strategy
-	// key is ReadCache return value
 	IsDirty(key interface{}) (isDirty bool, err error)
 
 	// Mark olny WriteBack Strategy
